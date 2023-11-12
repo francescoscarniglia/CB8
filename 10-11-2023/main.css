@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+/* hero */
+
+.hero{
+    width: 100%;
+    min-height: 200px;
+    /*background:url('./img/fish-378286_1280.jpeg') center center;*/
+    background-position: center center;
+    background-size:cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hideHero {
+    padding: 8px 16px;
+    box-shadow: 3px 3px 1px lightskyblue;
+    background:#fff;
+    border:0;
+}
+
+.hideHero:hover {
+    box-shadow: 3px 3px 1px lightseagreen;
+    background:#fff;
+    cursor: pointer;
+}
+
+/* gallery */
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    padding:0;
+}
+
+.gallery .gallery_item .gallery_item_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+}
+
+.gallery_item:hover .gallery_item_img{
+    filter: none;
+}
+
+.gallery .gallery_item{
+    flex-basis:50%;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+   .hero{min-height: 400px;}
+   .gallery .gallery_item{
+    flex-basis: 33.333%;
+}
+  }
+
