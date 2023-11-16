@@ -276,16 +276,16 @@ il pulsantino per i preferiti e quello per l'acquisto.
       }
   ];
 
-  
-
-//   const header = () => {
-//     const headerTitleBox = document.createElement('div')
-//     const headerTitleText = document.createElement('h1');
-    
-//     headerTitleBox.append(headerTitleText);
-//     return headerTitleBox;
-//   }
-  
-  //  document.body.append(createApp());
    
-document.body.append(createApp());
+// document.body.append(createApp());
+
+/*  Problema appendo in modo non corretto perché
+creo un appRounded ad ogni iterazione.
+Dovrei avere appRounded già nella pagina oppure 
+in un altra funzione ?
+*/
+
+
+// productList.forEach(product => {
+//   document.body.append(createApp(product));
+// });
