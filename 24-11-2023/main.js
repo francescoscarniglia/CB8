@@ -96,8 +96,8 @@ const createHero = () => {
     paragEl.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
     const link = createLink("#", "btn btnMain", "Get started");
 
-    const imgHeroCol6 = createDiv("div");
-    imgHeroCol6.className = "col-6";
+    const imgHeroCol6 = createDiv("col-6");
+    
 
     const imgHero = createImg("img/love.png", "img-fluid", "love");
     imgHeroCol6.append(imgHero);
