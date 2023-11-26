@@ -12,43 +12,104 @@ const createImg = (srcImage,classparam, altParam) => {
 	return img;
 };
 
-const createLink = (srcParam, classparam, content) => {
+const createLinkTodo = (srcParam, classparam, todoData) => {
 	const link = document.createElement("a");
 	link.className = classparam;
-	link.href = srcParam;
-	link.textContent = content;
+	link.href = todoData.url;
+	link.textContent = todoData.label;
+
+	// const dataLink = dataMenu.map(getLink);
+	// link.textContent = dataLink.label;
+
 	return link;
 };
 
-const createNavbar = (param) => {
-	//   const { url, label } = dataMenu;
+const createLink = (href, classparam, label) => {
+	const link = document.createElement("a");
+	link.className = classparam;
+    link.href = href;
+    link.textContent = label;
+
+    // const dataLink = dataMenu.map(getLink);
+    // link.textContent = dataLink.label;
+    
+	return link;
+};
+
+const createLi = (src) => {
+	const wrappLi = document.createElement("li");
+
+	wrappLi.className = "btn navbar-list-item";
+
+
+    const link = createLinkTodo(src, "navbar-list-item-link", {
+			url: "#",
+			label: "Home",
+		});
+	wrappLi.append(link);
+	return wrappLi;
+};
+
+const createNavbar = () => {
 	const navbar = document.createElement("nav");
 	navbar.className = "navbar row grow-1 collapse";
 
 	const navbarList = document.createElement("ul");
 	navbarList.className = "navbar-list grow-1";
 
-	// const navLi = document.createElement("li");
-	// navLi.className = "btn navbar-list-item";
+	const navLi = document.createElement("li");
+	navLi.className = "btn navbar-list-item";
 
-	//  const navLinK = createLink(
-	// 			getLink(dataMenu[0]),
-	// 			"navbar-list-item-link",
-	// 			getLink(dataMenu[1])
-	// 		);
+	const link = document.createElement("a");
 
-	// navLi.append(navLinK);
- 
-	//  dataMenu.forEach((dataMenu) => {
-	// 		navbar.appendChild(getLink(dataMenu.url));
-	// 	});
-
-	// const list = getLink(dataMenu);
-    const dataM = param.map(getLink);
-    dataM.url;
-     navbarList.append(dataM);
+	const list = createLi();
+	navbarList.append(list);
 	navbar.append(navbarList);
 	return navbar;
+};
+
+const createNavbarMeta = () => {
+
+
+	const navbarList = document.createElement("ul");
+	navbarList.className = "navbar-list";
+
+	// const navLi = document.createElement("li");
+    // navLi.className = "btn navbar-list-item";
+
+    // const link = document.createElement("a");
+    
+    const list = createLi();
+    navbarList.append(list);
+
+	return navbarList;
+};
+
+const createHero = () => {
+    const heroContEl = createDiv("container-fluid");
+    const rowContEl = createDiv('row');
+    const col6El = createDiv("col-6 d-flex d-flex-center-center");
+    const col6InternoEl = createDiv("col-6 box-title");
+    const titleEl = document.createElement('h1');
+    titleEl.textContent = "Thougthful Gifting Made Easy";
+    const paragEl = document.createElement('p');
+    paragEl.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    const link = createLink("#", "btn btnMain", "Get started");
+
+    const imgHeroCol6 = createDiv("div");
+    imgHeroCol6.className = "col-6";
+
+    const imgHero = createImg("img/love.png", "img-fluid", "love");
+    imgHeroCol6.append(imgHero);
+
+    col6InternoEl.append(titleEl, paragEl, link);
+    col6El.append(col6InternoEl);
+    rowContEl.append(col6El);
+    rowContEl.append(imgHeroCol6);
+    heroContEl.append(rowContEl);
+
+    return heroContEl;
+
 };
 
 const createHeader = () => {
@@ -56,7 +117,11 @@ const createHeader = () => {
 	wrappEl.className = "main-header p-30-5 relative";
 
 	const btnToggleEl = document.createElement("button");
-	btnToggleEl.className = "toggleIcon";
+    btnToggleEl.className = "toggleIcon";
+    
+    btnToggleEl.addEventListener("click", () => {
+                navbar.classList.toggle("show");
+            });
 
 	const btnToggleIcoEl = document.createElement("i");
 	btnToggleIcoEl.className = "fa fa-bars fa-2x main-color";
@@ -67,15 +132,16 @@ const createHeader = () => {
 	const createContainerEl = createDiv("container");
 	const createRowEl = createDiv("row row-header-main");
 	const boxLogo = createDiv("text-center-mobile");
-	const logolink = createLink( "#","", "");
+	const logolink = createLinkTodo( "#","", "");
     const logoImg = createImg("img/logoipsum-330.svg", '', 'Logo');
 
-     const navbar = createNavbar(dataMenu);
-
+    const navbar = createNavbar();
+    const navbarMeta = createNavbarMeta();
     
     logolink.append(logoImg);
 	boxLogo.append(logolink);
     createRowEl.append(boxLogo);
+    navbar.append(navbarMeta);
     createRowEl.append(navbar);
     createContainerEl.append(createRowEl);
     btnToggleEl.append(btnToggleIcoEl);
@@ -87,7 +153,7 @@ const createHeader = () => {
 
 let dataMenu = [
 	{
-		url: "/home",
+		url: "#",
 		label: "Home",
 	},
 	{
@@ -113,18 +179,16 @@ let dataMenu = [
 	}
 ];
 
+
+
 // function getLink(item) {
 //     return [item.url, item.label];
 // }
 
 const getLink = (item) => {
-    let url = item.url;
-    return url;
-    // let label = [item.label];
-    // let li = '<li>' . 
-    //  return [item.url, item.label];
+     return [item.url, item.label];
  }
-console.log(dataMenu.map(getLink));
+// console.log(dataMenu.map(getLink));
 
 // let dataLink = (param) => {
     
@@ -141,12 +205,13 @@ console.log(dataMenu.map(getLink));
 //  console.log(dataMenu.map(getLink));
 
 
-// const test = dataMenu.map((data) => [data.url, data.label]);
+//  const test = dataMenu.map((data) => [data.url, data.label]);
 // const test = dataMenu.map(getLink);
-// console.log(test);
+//  console.log(test);
 
 
 
 const appCanvas = document.querySelector(".app");
 const header = createHeader();
-appCanvas.appendChild(header);
+const hero = createHero();
+appCanvas.append(header,hero);
