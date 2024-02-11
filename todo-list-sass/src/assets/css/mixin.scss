@@ -1,0 +1,6 @@
+@mixin flex-container ($direction:row){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    gap:20px;
+}
